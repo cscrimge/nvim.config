@@ -471,7 +471,7 @@ local servers = {
     cmd = { "clangd", "--clang-tidy" }
   },
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
