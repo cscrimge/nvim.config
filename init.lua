@@ -640,5 +640,17 @@ cmp.setup {
   },
 }
 
+vim.filetype.add({
+  filename = {
+  ['SConscript'] = 'python',
+  ['SConstruct'] = 'python'
+  },
+  pattern = {
+    ['SConscript.*'] = 'python',
+    ['*.fmebun'] = 'xml',
+    ['*.fmemod'] = 'xml'
+  }
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
