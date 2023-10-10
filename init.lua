@@ -215,6 +215,9 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  {
+    'mbbill/undotree',
+  },
 }, {})
 
 -- [[ Setting options ]]
@@ -430,6 +433,12 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
+
+-- Ctrl+U to toggle the undo tree
+vim.keymap.set('n', '<c-e>', '<c-u>')
+vim.keymap.set('n', '<c-u>', vim.cmd.UndotreeToggle)
+
+-- vim.keymap.set('n', '<c-e>, vim.
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
