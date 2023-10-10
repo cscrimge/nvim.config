@@ -432,6 +432,22 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  -- local range_formatting = function ()
+  --   local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+  --   local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+  --   vim.lsp.buf.format({
+  --     range = {
+  --       ["start"] = { start_row, 0 },
+  --       ["end"] = { end_row, 0 },
+  --     },
+  --     async = true,
+  --   })
+  -- end
+
+  vim.keymap.set("v", "<leader>f", vim.lsp.buf.format, { desc = "Range Formatting" })
+  vim.keymap.set("v", "<Tab>", vim.lsp.buf.format, { desc = "Range Formatting" })
+  vim.keymap.set('v', '<c-f>', vim.lsp.buf.format, {silent = true, buffer = 0, normal = true})
 end
 
 -- Ctrl+U to toggle the undo tree
