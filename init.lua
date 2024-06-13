@@ -218,6 +218,9 @@ require('lazy').setup({
   {
     'mbbill/undotree',
   },
+  {
+    'github/copilot.vim'
+  },
 }, {})
 
 -- [[ Setting options ]]
@@ -295,6 +298,10 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    layout_strategy = 'vertical',
+  },
+  pickers = {
+    lsp_references = { fname_width = 100, },
   },
 }
 
@@ -466,12 +473,20 @@ vim.keymap.set('n', '<c-u>', vim.cmd.UndotreeToggle)
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+
 local servers = {
   clangd = {
     cmd = { "clangd", "--clang-tidy" }
   },
   -- gopls = {},
-  pyright = {},
+  pyright = {
+    python = {
+      analysis = {
+        -- ignore = { '*' }
+      }
+    }
+  },
+  ruff_lsp = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
