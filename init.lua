@@ -221,6 +221,22 @@ require('lazy').setup({
   {
     'mbbill/undotree',
   },
+    {
+      'github/copilot.vim',
+      event = "InsertEnter",
+      config = function()
+
+        -- Remap <C-l> to accept Copilot suggestions
+        vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', {
+          expr = true,
+          silent = true,
+          noremap = true,
+        })
+        -- Accept Copilot suggestion word-by-word
+        vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Next()', { expr = true, silent = true })
+        vim.api.nvim_set_keymap("i", "<C-k>", 'copilot#Previous()', { expr = true, silent = true })
+      end,
+    },
   {
     'github/copilot.vim'
   },
