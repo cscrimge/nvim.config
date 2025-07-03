@@ -487,7 +487,6 @@ local on_attach = function(_, bufnr)
 
   vim.keymap.set("v", "<leader>f", vim.lsp.buf.format, { desc = "Range Formatting" })
   vim.keymap.set("v", "<Tab>", vim.lsp.buf.format, { desc = "Range Formatting" })
-  vim.keymap.set('v', '<c-f>', vim.lsp.buf.format, {silent = true, buffer = 0, normal = true})
 end
 
 -- Ctrl+U to toggle the undo tree
