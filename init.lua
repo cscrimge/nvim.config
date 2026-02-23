@@ -514,20 +514,24 @@ local servers = {
   },
   -- gopls = {},
   pyright = {
-    python = {
-      analysis = {
-        -- ignore = { '*' }
-      }
-    }
+    settings = {
+      python = {
+        analysis = {
+          -- ignore = { '*' }
+        },
+      },
+    },
   },
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+      },
     },
   },
 }
@@ -546,16 +550,13 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end
-}
+for server_name, _ in pairs(servers) do
+  local config = vim.deepcopy(servers[server_name] or {})
+  config.capabilities = capabilities
+  config.on_attach = on_attach
+  vim.lsp.config(server_name, config)
+end
+vim.lsp.enable(vim.tbl_keys(servers))
 
 require("clangd_extensions").setup({
     inlay_hints = {
