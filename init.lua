@@ -110,6 +110,39 @@ require('lazy').setup({
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
+    -- OpenAI Codex in Neovim
+    'johnseth97/codex.nvim',
+    lazy = true,
+    cmd = { 'Codex', 'CodexToggle' },
+    keys = {
+      {
+        '<leader>cc',
+        function()
+          require('codex').toggle()
+        end,
+        desc = 'Toggle Codex',
+        mode = { 'n', 't' },
+      },
+    },
+    opts = {
+      panel = true,
+      width = 0.30,
+      keymaps = {
+        toggle = nil,
+        quit = '<C-q>',
+      },
+    },
+    config = function(_, opts)
+      require('codex').setup(opts)
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'codex',
+        callback = function()
+          vim.cmd 'startinsert'
+        end,
+      })
+    end,
+  },
+  {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
