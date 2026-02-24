@@ -234,7 +234,14 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
+      local ok, configs = pcall(require, 'nvim-treesitter.configs')
+      if not ok then
+        ok, configs = pcall(require, 'nvim-treesitter.config')
+      end
+      if not ok or type(configs.setup) ~= 'function' then
+        return
+      end
+      configs.setup {
         -- Add languages to be installed here that you want installed for treesitter
         ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
 
