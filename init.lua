@@ -166,6 +166,7 @@ require('lazy').setup({
 
   {
     'comfysage/evergarden',
+    branch = 'mega',
     priority = 1000,
     opts = {
       transparent_background = true,
@@ -228,9 +229,10 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-treesitter/nvim-treesitter-context',
+      { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'master' },
+      { 'nvim-treesitter/nvim-treesitter-context', branch = 'master' },
     },
     build = ':TSUpdate',
     config = function()
