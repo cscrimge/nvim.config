@@ -166,7 +166,6 @@ require('lazy').setup({
 
   {
     'comfysage/evergarden',
-    branch = 'mega',
     priority = 1000,
     opts = {
       transparent_background = true,
