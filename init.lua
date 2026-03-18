@@ -447,6 +447,20 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
+local function grep_with_glob(word_match)
+  vim.ui.input({ prompt = 'File glob: ' }, function(glob)
+    if glob then
+      require('telescope.builtin').live_grep({
+        glob_pattern = glob,
+        additional_args = word_match and { '--word-regexp' } or {},
+      })
+    end
+  end)
+end
+
+vim.keymap.set('n', '<leader>sG', function() grep_with_glob(false) end, { desc = '[S]earch [G]rep with glob filter' })
+vim.keymap.set('n', '<leader>sW', function() grep_with_glob(true) end, { desc = '[S]earch [W]ord grep with glob filter' })
+
 require("ibl").setup()
 
 -- Diagnostic keymaps
