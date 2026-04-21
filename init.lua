@@ -566,6 +566,8 @@ local servers = {
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
+  jsonls = {},
+
   lua_ls = {
     settings = {
       Lua = {
