@@ -224,7 +224,7 @@ require('lazy').setup({
     config = function()
       local ensure_installed = {
         'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript',
-        'vimdoc', 'vim', 'json',
+        'vimdoc', 'vim', 'json', 'xml',
       }
       require('nvim-treesitter').install(ensure_installed)
 
@@ -386,6 +386,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    debounce = 200,
     mappings = {
       i = {
         ['<C-u>'] = false,
