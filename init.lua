@@ -395,7 +395,7 @@ require('telescope').setup {
     layout_strategy = 'vertical',
   },
   pickers = {
-    lsp_references = { fname_width = 100, },
+    lsp_references = { fname_width = 100, include_current_line = true },
   },
 }
 
