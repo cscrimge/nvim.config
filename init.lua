@@ -719,7 +719,8 @@ vim.filetype.add({
   extension = {
     ['fmebun'] = 'xml',
     ['fmemod'] = 'xml',
-    ['b3'] = 'python'
+    ['b3'] = 'python',
+    ['fmxj'] = 'json',
   },
   pattern = {
     ['SConscript.*'] = 'python',
